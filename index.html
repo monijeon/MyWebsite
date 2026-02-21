@@ -2,11 +2,82 @@
 <html>
 <head>
     <title>Moni's Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Welcome screen */
+        #welcomeScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffedf0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        #welcomeScreen h1 {
+            color: #510f6b;
+            font-size: 5em;
+        }
+
+        #welcomeScreen button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ffb6c1;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #welcomeScreen button:hover {
+            background-color: #4f127b;
+            color: white;
+        }
+
+        /* Main content */
+        #mainContent {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f8ff;
+        }
+
+        #mainContent h1 {
+            color: #5c107c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello! myself monika</h1>
-    <p>I love coding </p>
-    <p>my passion is drawing and painting</p>
-    <h1>i want to be a software engineer</h1>
+
+<!-- Welcome screen -->
+<div id="welcomeScreen">
+    <h1>Welcome to Moni's World!</h1>
+    <button onclick="enterSite()">Enter</button>
+</div>
+
+<!-- Main website content -->
+<div id="mainContent">
+    <h1>Hello! This is my first website </h1>
+    <p>I love drawing!</p>
+    <img src="yourart.png" alt="My Art" width="300">
+</div>
+
+<script>
+    function enterSite() {
+        document.getElementById("welcomeScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    }
+</script>
+
 </body>
 </html>
