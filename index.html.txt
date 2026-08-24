@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Surprise For You!🎀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ff9fcf;
+    --light-pink: #ffe4f1;
+    --purple: #cbb7ff;
+    --blue: #bde7ff;
+    --cream: #fff9f2;
+    --text: #5c4b63;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background: linear-gradient(135deg, #fff0f7, #eee7ff, #e7f7ff);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* -----------------------
+   FLOATING DECORATIONS
+----------------------- */
+
+.decor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 5s ease-in-out infinite;
+}
+
+.heart {
+    font-size: 25px;
+}
+
+.star {
+    font-size: 22px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(8deg);
+    }
+}
+
+/* -----------------------
+   GENERAL
+----------------------- */
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    width: min(900px, 100%);
+    text-align: center;
+}
+
+/* -----------------------
+   INTRO PAGE
+----------------------- */
+
+.intro-box {
+    background: rgba(255,255,255,0.75);
+    padding: 60px 30px;
+    border-radius: 35px;
+    box-shadow: 0 20px 60px rgba(160,120,180,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.small-text {
+    font-size: 1rem;
+    color: #a48eb0;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: clamp(3rem, 9vw, 6rem);
+    color: #ff8fc4;
+    line-height: 1.1;
+    text-shadow: 4px 5px 0 #ffd7e9;
+}
+
+.intro-message {
+    font-size: 1.2rem;
+    margin: 25px auto;
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+.enter-btn {
+    border: none;
+    background: linear-gradient(135deg, #ff9dcc, #c6a8ff);
+    color: white;
+    padding: 16px 35px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(200,150,220,0.3);
+    transition: .3s;
+}
+
+.enter-btn:hover {
+    transform: translateY(-5px) scale(1.04);
+}
+
+/* -----------------------
+   MAIN WORLD
+----------------------- */
+
+.hidden {
+    display: none !important;
+}
+
+.world-title {
+    font-family: 'Cherry Bomb One', cursive;
+    color: #a58be8;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    margin-bottom: 10px;
+}
+
+.world-subtitle {
+    margin-bottom: 35px;
+    color: #8e7b95;
+}
+
+/* -----------------------
+   MESSAGE CARDS
+----------------------- */
+
+.message-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.message-card {
+    background: rgba(255,255,255,0.82);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 190px;
+    box-shadow: 0 12px 35px rgba(150,120,180,0.12);
+    cursor: pointer;
+    transition: .35s;
+    border: 3px solid transparent;
+}
+
+.message-card:nth-child(1) {
+    border-color: #ffd1e5;
+}
+
+.message-card:nth-child(2) {
+    border-color: #d9caff;
+}
+
+.message-card:nth-child(3) {
+    border-color: #c9edff;
+}
+
+.message-card:nth-child(4) {
+    border-color: #ffe0bd;
+}
+
+.message-card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 20px 45px rgba(150,120,180,0.2);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.message-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.message-card p {
+    color: #9b899f;
+}
+
+/* -----------------------
+   MESSAGE MODAL
+----------------------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(100,80,120,0.25);
+    backdrop-filter: blur(7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 20;
+}
+
+.modal-box {
+    width: min(600px, 100%);
+    background: #fffdfd;
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 25px 70px rgba(100,70,120,0.2);
+    animation: pop .4s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-icon {
+    font-size: 4rem;
+}
+
+.modal-box h2 {
+    font-family: 'Cherry Bomb One', cursive;
+    color: #ff91c4;
+    margin: 15px 0;
+}
+
+.modal-box p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.close-btn {
+    margin-top: 25px;
+    border: none;
+    background: #ffe1ee;
+    color: #9a6480;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* -----------------------
+   FINAL BUTTON
+----------------------- */
+
+.final-section {
+    margin-top: 45px;
+}
+
+.final-btn {
+    border: none;
+    background: #fff;
+    color: #a080d9;
+    padding: 15px 30px;
+    border-radius: 40px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(150,120,180,0.15);
+    transition: .3s;
+}
+
+.final-btn:hover {
+    transform: scale(1.05);
+}
+
+/* -----------------------
+   FINAL BIRTHDAY PAGE
+----------------------- */
+
+#finalPage {
+    text-align: center;
+}
+
+.final-box {
+    background: rgba(255,255,255,0.8);
+    padding: 60px 25px;
+    border-radius: 35px;
+    box-shadow: 0 20px 60px rgba(160,120,180,0.15);
+}
+
+.cake {
+    font-size: 7rem;
+    animation: cakeFloat 2s ease-in-out infinite;
+}
+
+@keyframes cakeFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.final-title {
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: #ff8fc4;
+    text-shadow: 4px 5px 0 #ffd8e9;
+}
+
+.final-message {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 25px auto;
+}
+
+/* -----------------------
+   CONFETTI
+----------------------- */
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 14px;
+    top: -20px;
+    z-index: 50;
+    animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+/* -----------------------
+   MOBILE
+----------------------- */
+
+@media(max-width:600px) {
+
+    .intro-box,
+    .final-box {
+        padding: 45px 20px;
+    }
+
+    .message-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating decorations -->
+
+<div class="decor heart" style="left:8%; top:15%;">💗</div>
+<div class="decor star" style="left:85%; top:12%;">✨</div>
+<div class="decor heart" style="left:15%; top:75%;">💕</div>
+<div class="decor star" style="left:90%; top:70%;">⭐</div>
+<div class="decor heart" style="left:75%; top:85%;">💖</div>
+<div class="decor duck" style="left:50%; top:55%;">🦆</div>
+<!-- =========================
+     INTRODUCTION PAGE
+========================= -->
+
+<section id="introPage" class="page">
+
+    <div class="container">
+
+        <div class="intro-box">
+
+            <div class="small-text">
+                ✨ A tiny surprise awaits you !!✨
+            </div>
+
+            <h1>
+                Hey, Birthday Boy! 🎀
+            </h1>
+
+            <p class="intro-message">
+                Someone secretly made a little world
+                just for you... 👀🌸
+                <br><br>
+                There might be a few things waiting
+                for you inside,hope you'll like it..ik you'll like whatever i do..hehe😁😘
+            </p>
+
+            <button class="enter-btn" onclick="enterWorld()">
+                🎁 Open Your Surprise Nitin
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BIRTHDAY WORLD
+========================= -->
+
+<section id="worldPage" class="page hidden">
+
+    <div class="container">
+
+        <div class="small-text">
+            🌸 Welcome to your little Birthday surprise 🌸
+        </div>
+
+        <h2 class="world-title">
+            A Few Things For You 💕
+        </h2>
+
+        <p class="world-subtitle">
+            Take your time... there are little messages hidden here👀
+        </p>
+
+
+        <div class="message-grid">
+
+            <!-- MESSAGE 1 -->
+
+            <div class="message-card"
+                 onclick="showMessage(1)">
+
+                <div class="card-icon">
+                    🌷
+                </div>
+
+                <h3>
+                    A Little Wish
+                </h3>
+
+                <p>
+                    Something I wanted to tell you...
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE 2 -->
+
+            <div class="message-card"
+                 onclick="showMessage(2)">
+
+                <div class="card-icon">
+                    💌
+                </div>
+
+                <h3>
+                    A Tiny Message
+                </h3>
+
+                <p>
+                    Open me when you're ready!
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE 3 -->
+
+            <div class="message-card"
+                 onclick="showMessage(3)">
+
+                <div class="card-icon">
+                    🌙
+                </div>
+
+                <h3>
+                    One More Thing
+                </h3>
+
+                <p>
+                    Okay... this one is a little special..
+                </p>
+
+            </div>
+
+
+            <!-- MESSAGE 4 -->
+
+            <div class="message-card"
+                 onclick="showMessage(4)">
+
+                <div class="card-icon">
+                    🧸
+                </div>
+
+                <h3>
+                    From Me
+                </h3>
+
+                <p>
+                    A message saved especially for you..sorry for awaiting you😜
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="final-section">
+
+            <button class="final-btn"
+                    onclick="showFinal()">
+
+                🎂 I Think I'm Ready For The Final Surprise
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MESSAGE MODAL
+========================= -->
+
+<div id="messageModal"
+     class="modal hidden">
+
+    <div class="modal-box">
+
+        <div id="modalIcon"
+             class="modal-icon">
+        </div>
+
+        <h2 id="modalTitle">
+        </h2>
+
+        <p id="modalText">
+        </p>
+
+        <button class="close-btn"
+                onclick="closeMessage()">
+
+            Okayyy 💗...Don't be pissed off🫣
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FINAL BIRTHDAY PAGE
+========================= -->
+
+<section id="finalPage"
+         class="page hidden">
+
+    <div class="container">
+
+        <div class="final-box">
+
+            <div class="cake">
+                🎂
+            </div>
+
+            <h1 class="final-title">
+                HAPPY BIRTHDAY NITIN!!!
+            </h1>
+
+            <p class="final-message">
+
+                🎉 💗WISH YOU A VERY HAPPIEST BIRTHDAY❣️💖 🎉
+
+                <br><br>
+
+                <!-- ✏️ CHANGE THIS MESSAGE -->
+
+                I hope your birthday is filled with
+                happiness, laughter, good memories,
+                and all the love that you deserve 💗
+
+                <br><br>
+
+                I still remember our first moment😂...
+                even if it happened through a screen it was cute❣️
+
+                <br><br>
+
+                Stay blessed , stay happy 
+                and keep being you.Don't think about anything and ENJOY you DAY!! 💖
+
+                <br><br>
+
+                Happy Birthday, <strong>NITIN!!</strong>! 🎀
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* ==================================================
+   ✏️ EDIT YOUR MESSAGES HERE
+================================================== */
+
+const messages = {
+
+    1: {
+        icon: "🌷",
+        title: "A Little Wish",
+        text: `I hope this year brings you
+lots of reasons to smile,I know things haven't been easy for you lately but its your day your NEW chapter Enjoy have fun and give a fresh start!🤍
+ 💗`
+    },
+
+
+    2: {
+        icon: "💌",
+        title: "A Tiny Message",
+        text:  `Thank you for all the random talks,
+stupid jokes and checking on me...i really miss our old times
+`
+    },
+
+
+    3: {
+        icon: "🌙",
+        title: "One More Thing",
+        text: `No matter how busy life gets,
+I hope you always remember
+that there are people rooting
+for you.
+
+And yes...
+
+I'm one of them. 🫶`
+    },
+
+
+    4: {
+        icon: "🧸",
+        title: "From Me",
+        text: `Thank you for everything
+
+I'm genuinely happy
+we became friends. 💕`
+    }
+
+};
+
+
+/* ==================================================
+   ENTER THE WORLD
+================================================== */
+
+function enterWorld() {
+
+    document
+        .getElementById("introPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("worldPage")
+        .classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+   SHOW MESSAGE
+================================================== */
+
+function showMessage(number) {
+
+    const message = messages[number];
+
+    document.getElementById("modalIcon")
+        .textContent = message.icon;
+
+    document.getElementById("modalTitle")
+        .textContent = message.title;
+
+    document.getElementById("modalText")
+        .textContent = message.text;
+
+    document
+        .getElementById("messageModal")
+        .classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+   CLOSE MESSAGE
+================================================== */
+
+function closeMessage() {
+
+    document
+        .getElementById("messageModal")
+        .classList.add("hidden");
+
+}
+
+
+/* ==================================================
+   FINAL BIRTHDAY PAGE
+================================================== */
+
+function showFinal() {
+
+    document
+        .getElementById("worldPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("finalPage")
+        .classList.remove("hidden");
+
+    createConfetti();
+
+}
+
+
+/* ==================================================
+   CONFETTI
+================================================== */
+
+function createConfetti() {
+
+    const symbols = [
+        "💗",
+        "💕",
+        "✨",
+        "🌸",
+        "⭐",
+        "🎀"
+        "🦆"
+    ];
+
+    for (let i = 0; i < 70; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() * symbols.length
+                )
+            ];
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+            (Math.random() * 3 + 2) + "s";
+
+        piece.style.fontSize =
+            (Math.random() * 10 + 12) + "px";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 5000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
